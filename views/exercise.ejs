@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Exercise Ability</title>
+    <%- include('header'); -%>
+    <style>
+        * {
+            font-family: 微軟正黑體;  
+        }
+        body {
+            background-color: #f8f9fa; /* 背景色 */
+            color: #343a40; /* 文字颜色 */
+        }
+    
+        .navbar {
+            background-color: rgb(240, 240, 240) !important;
+        }
+    
+        .navbar .navbar-brand {
+            color: rgb(0, 0, 0) !important;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    
+        .navbar li a {
+            color: #000000 !important;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    
+        .navbar-nav li a:hover,
+        .navbar-nav li.active a {
+            color: #f4511e !important;
+            background-color: #fff !important;
+        }
+    
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+    
+        .nav {
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .form-group label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 300px;
+            height: 30px;
+            margin: 10px;
+            color: rgb(226, 150, 51);
+            border-radius: 5px;
+        }
+        h1{
+            margin: 20px;
+        }
+        #time, #conditioningData, #strengthData, #muscularEnduranceData, #powerData, #flexibilityData, #conditioningPR, #strengthPR, #muscularEndurancePR, #powerPR, #flexibilityPR{
+            width: 500px;
+            height: 35px;
+            margin: 10px;
+            /*color: rgb(226, 150, 51);*/
+        }
+        select#exerciseType, #exerciseItem{
+          width: 500px;
+          height: 35px;
+          margin: 10px;
+          padding: 5px;
+          border: none; 
+          border:solid 1px #ccc;
+          border-radius: 4px;
+          /*color: rgb(226, 150, 51);*/
+        }
+        #container{
+            margin: 50px;
+            padding: 10px;
+            width: 420px;
+            height: 250px;
+            background-color: white;
+            border-radius: 5px;
+            border-top: 10px solid rgb(226, 150, 51);
+            border-bottom: 10px solid rgb(226, 150, 51);
+            box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+            /*定位對齊*/
+            position:relative;   
+            margin: auto;
+            top: 100px;
+            text-align:center;  
+        }
+        .form-label {
+            text-align: right;
+            padding-left: 5px; /* 可根據需要調整間距 */
+            width: 200px; /* 可根據需要調整寬度 */
+            display: inline-block; /* 讓標籤和輸入框在同一行 */
+            font-size: 16px;
+        }
+        input{
+            padding: 5px;
+            border: none; 
+            border:solid 1px #ccc;
+            border-radius: 5px;
+        }
+        .submit{
+            color: white;  
+            background: rgb(226, 150, 51);
+            font-size: 16px; 
+            width: 100px;
+            height: 30px;
+            margin: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 0px;
+        }
+
+        .submit:hover{
+            background: rgb(226, 150, 51);
+        }
+    </style>
+</head>
+<body>
+    <%- include('nav'); -%>
+    <div class="container">
+        <h3 class="mt-5">動作檢測</h3>
+        <form id="exerciseForm" action="/exercise" method="post">
+            <div class="form-group mb-3">
+                <label for="time" class="form-label">時間:</label>
+                <input type="datetime-local" id="time" name="time" class="form-control" required >
+            </div>
+            <div class="form-group mb-3">
+                <label for="exerciseType" class="form-label">檢測動作:</label>
+                <select id="exerciseType" name="exerciseType" class="form-select">
+                    <option value="" disabled selected>選擇動作</option>
+                    <option value="深蹲">深蹲</option>
+                    <option value="跨欄">跨欄</option>
+                    <option value="直線前蹲">直線前蹲</option>
+                    <option value="肩部活動">肩部活動</option>
+                    <option value="直膝抬腿">直膝抬腿</option>
+                    <option value="伏地挺身">伏地挺身</option>
+                    <option value="旋轉穩定">旋轉穩定</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" id="startButton">開始</button>
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

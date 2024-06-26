@@ -1,0 +1,48 @@
+<meta charset="utf-8">
+    <!-- 設定 bootstrap 響應式(Responsive)網頁之初始大小 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 引用 jQuery JavaScript library (v3.7.0) 之CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <!-- 引用 bootstrap (v5.3.1) CSS 之CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- 引用 bootstrap (v5.3.1) JavaScript library 之CDN  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <!-- 引用Hightcharts JavaScript library 之CDN -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- 假如無法連上網路載入CDN，則改為飲用已經下載放在專案目錄下的local
+    jquery-3.7.0.min.js，bootstrap-5.3.1.bundle.min.js，bootstrap-5.3.1.min.css，highcharts.js，exporting.js -->
+    <script>
+        // 假如CDN提供的jQuery不存在，則動態寫入引用已下載放在專案目錄下的函數庫
+        if (window.jQuery === undefined) {
+
+            // (請從 https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js 下載jQuery v3.7.0，取名為jquery.min.js後，放入public/javascripts目錄中)
+            // 以下是引用存放在public/javascripts目錄中的local jQuery JavaScript library (v3.7.0) 
+            document.write('<script src="javascripts/jquery-3.7.0.min.js"> <\/script>');
+
+            // (請從 https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css 下載bootstrap (v5.3.1) CSS，取名為bootstrap.min.css後，放入public/stylesheets目錄中)   
+            // 以下是引用存放在public/stylesheets目錄中的local bootstrap css -->
+            document.write('<link rel="stylesheet" href="stylesheets/bootstrap.min.css" >');
+
+            // (請從 https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js 下載bootstrap (v5.3.1) JavaScript library，取名為bootstrap.bundle.min.js後，放入public/javascripts目錄中
+            // 以下是引用存放在public 目錄下javascripts目錄中的local bootstrap JavaScript library -->
+            document.write('<script src="javascripts/bootstrap.bundle.min.js"> <\/script>');
+
+            // (請從 https://code.highcharts.com/highcharts.js 下載Hightcharts JavaScript library，取名為highcharts.js後，放入public/javascripts目錄中)
+            // 以下是引用存放在public/javascripts目錄中的local Highcharts JavaScript library -->
+            document.write('<script src="javascripts/highcharts.js"> <\/script>');
+
+            // (請從 https://code.highcharts.com/modules/exporting.js 下載exporting JavaScript library，取名為exporting.js後，放入public/javascripts目錄中)
+            // 以下是引用存放在public/javascripts目錄中的local exporting.js JavaScript library -->
+            document.write('<script src="javascripts/exporting.js"> <\/script>');
+        }
+    </script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="\stylesheets\mainStyle.css">

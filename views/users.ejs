@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>首頁</title>
+    <meta charset="utf-8">
+    <!-- 設定 bootstrap 響應式網頁之初始大小 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 引用 jQuery JavaScript library (v3.5.1) CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- 引用 Bootstrap (v5.3.1) CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+    <!-- 引用 Bootstrap (v5.3.1) JavaScript library CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <!-- 引用 Highcharts JavaScript library CDN -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- 自定義樣式表 -->
+    <link rel="stylesheet" type="text/css" href="\stylesheets\mainStyle.css">
+       <!-- 自定義顏色樣式 -->
+    <style>
+        *{
+            font-family: 微軟正黑體;  
+        }
+        body {
+            background-color: #f8f9fa; /* 背景色 */
+            color: #343a40; /* 文字颜色 */
+        }
+        
+        .navbar {
+            background-color: rgb(240, 240, 240) !important;
+        }
+    
+        .navbar .navbar-brand {
+            color: rgb(0, 0, 0) !important;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    
+        .navbar li a {
+            color: #000000 !important;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    
+        .navbar-nav li a:hover,
+        .navbar-nav li.active a {
+            color: #f4511e !important;
+            background-color: #fff !important;
+        }
+    
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+    
+        .nav {
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+    
+        .card {
+            background-color: #ffffff; /* 卡片背景色 */
+            border: 1px solid #dee2e6; /* 卡片边框颜色 */
+        }
+        
+        .card-body {
+            color: #212529; /* 卡片文本颜色 */
+        }
+
+        /* 調整輸入框的樣式 */
+        input[type="text"] {
+            font-size: 20px;
+            width: 70%; /* 設置寬度為100%以填滿父元素 */
+            height: 30px; /* 設置高度 */
+            margin: 10px;
+            padding: 10px; /* 添加內邊距以改善外觀 */
+            box-sizing: border-box; /* 使內邊距和邊框包含在指定的寬度和高度內 */
+            border: 1px solid #ced4da; /* 添加邊框 */
+            border-radius: 5px; /* 添加圓角 */
+        }
+    </style>
+    <!-- 自定义JavaScript -->
+    <script>
+        // JavaScript function to enable editing for all fields
+        function editAllFields() {
+            var allFields = document.querySelectorAll('.editable-field');
+            
+            allFields.forEach(function(field) {
+                var originalValue = field.textContent;
+                var inputField = document.createElement('input');
+                inputField.setAttribute('type', 'text');
+                inputField.setAttribute('value', originalValue);
+                field.innerHTML = '';
+                field.appendChild(inputField);
+            });
+
+            var editBtns = document.querySelectorAll('.edit-btn');
+            editBtns.forEach(function(btn) {
+                btn.style.display = 'none';
+            });
+
+            var saveBtn = document.createElement('button');
+            saveBtn.textContent = '保存';
+            saveBtn.classList.add('btn', 'btn-sm', 'btn-success', 'ms-1'); // Adjusted style
+            saveBtn.onclick = function() {
+                // Save functionality goes here
+                var newValues = [];
+                allFields.forEach(function(field) {
+                    newValues.push(field.querySelector('input').value);
+                });
+                // Perform AJAX call to save the updated values
+                // Once saved, replace input fields with updated values and show edit buttons
+                allFields.forEach(function(field, index) {
+                    field.innerHTML = newValues[index];
+                });
+                editBtns.forEach(function(btn) {
+                    btn.style.display = 'inline-block';
+                });
+                document.body.removeChild(saveBtn);
+                document.body.removeChild(cancelBtn);
+            };
+            document.body.appendChild(saveBtn);
+        }
+    </script>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow nav">
+        <div class="container-fluid">
+            <!-- 導覽列標題 -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">基本資料</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/exercise">開始運動</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <!-- 個人資料標題 -->
+        <h2>個人資料</h2>
+        <!-- 個人資料 -->
+        <div class="card">
+            <div class="card-body">
+                <% userData.forEach(data => { %>
+                    <p class="card-text"><strong>姓名:</strong> <span class="editable-field" id="fullname_<%= data.id %>"><%= data.fullname %></span></p>
+                    <p class="card-text"><strong>帳號:</strong> <span class="editable-field" id="account_<%= data.id %>"><%= data.account %></span></p>
+                    <p class="card-text"><strong>Email:</strong> <span class="editable-field" id="email_<%= data.id %>"><%= data.email %></span></p>
+                    <p class="card-text"><strong>身高:</strong> <span class="editable-field" id="height_<%= data.id %>"><%= data.height %></span></p>
+                    <p class="card-text"><strong>體重:</strong> <span class="editable-field" id="weight_<%= data.id %>"><%= data.weight %></span></p>
+                    <p class="card-text"><strong>性別:</strong> <span class="editable-field" id="gender_<%= data.id %>"><%= data.gender %></span></p>
+                <% }); %>
+                <div class="d-flex align-items-center"> <!-- Adjusted -->
+                    <button type="button" class="btn btn-sm btn-primary edit-btn" onclick="editAllFields()">一鍵編輯</button>
+                    <!-- Save and cancel buttons -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

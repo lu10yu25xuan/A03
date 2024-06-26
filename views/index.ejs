@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>
+        登入
+    </title>
+  </head>
+  <style>
+    
+*{
+  font-family:微軟正黑體;  
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  padding: 0%;
+  margin: 0%;
+  background-image: url('././images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#account, #password, #fullname, #comfirm_password,#account2, #password2,#weight,#email,#height{
+  width: 250px;
+  height: 20px;
+  margin: 10px;
+  color: rgb(226, 150, 51);
+}
+h3{
+  height: 20px;
+  margin: 20px;
+  text-align:center;  
+  color: rgb(226, 150, 51);
+}
+h5{
+  margin: 10px;
+  color: #6f6b6f;
+}
+
+h5:hover{
+  color: black;
+}
+#container1{
+  margin: 50px;
+  padding: 10px;
+  width: 420px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  border-top: 10px solid rgb(226, 150, 51);
+  border-bottom: 10px solid rgb(226, 150, 51);
+  box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+  
+  /*定位對齊*/
+  position:relative;   
+  margin: auto;
+  top: 100px;
+  text-align:center;  
+}
+#container2{
+  margin: 50px;
+  padding: 10px;
+  width: 420px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  border-top: 10px solid rgb(226, 150, 51);
+  border-bottom: 10px solid rgb(226, 150, 51);
+  box-shadow: 0 0px 70px rgba(0, 0, 0, 0.7);
+  
+  
+  /*定位對齊*/
+  position:relative;   
+  margin: auto;
+  top: 100px;
+  text-align:center;  
+}
+.system_name{
+  /*定位對齊*/
+  position:relative;   
+  margin: auto;
+  top: 100px;
+  text-align:center; 
+}
+
+.submit{
+  color: white;  
+  background: rgb(226, 150, 51);
+  text-align:center;  
+  width: 200px;
+  height: 30px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+.submit:hover{
+  background: rgb(226, 150, 51);
+}
+
+#container2{
+  visibility: hidden;   /*剛開始消失*/
+  height: 550px;
+}
+.form-label {
+  text-align: right;
+  padding-right: 10px; /* 可根據需要調整間距 */
+  width: 50px; /* 可根據需要調整寬度 */
+  display: inline-block; /* 讓標籤和輸入框在同一行 */
+}
+.form-label2 {
+  text-align: right;
+  padding-right: 10px; /* 可根據需要調整間距 */
+  width: 100px; /* 可根據需要調整寬度 */
+  display: inline-block; /* 讓標籤和輸入框在同一行 */
+}
+
+
+input{
+  padding: 5px;
+  border: none; 
+  border:solid 1px #ccc;
+  border-radius: 5px;
+}
+select#gender,#apartment,#representative{
+  width: 260px;
+  height: 32px;
+  margin: 10px;
+  padding: 5px;
+  border: none; 
+  border:solid 1px #ccc;
+  border-radius: 4px;
+  color: rgb(226, 150, 51);
+}
+#error-message {
+  color: red;
+}
+  </style>
+  <body>
+    <div class="system_name">
+      <h2>運動數據系統</h2>
+    </div>
+
+    
+    <!-- 添加這個 div 以顯示錯誤消息-->
+    <div id="error-message">
+      <% if (error) { %>
+        <script>
+          window.alert('<%= error %>');
+        </script>
+      <% } %>
+    </div> 
+    
+    <div class="login_page">
+      <div id="container1">
+
+        <div class="login">  
+          
+          <h3>登入 Login</h3>
+          <form action="/users" method="post">
+            <div class="tab"></div>
+            <label for="account" class="form-label">帳號：</label><input type="text" id="account" name="account" placeholder="帳號" required>
+            <div class="tab"></div>
+            <label for="password" class="form-label">密碼：</label><input type="password" id="password" name="password" placeholder="密碼" required>
+            <div class="tab"></div>
+            <input type="submit" value="登入" class="submit" onclick="location.href='https://codepen.io/rosewang0303/full/OQbLBv/'">
+          </form>  
+
+          <h5 onclick="show_hide()">註冊帳號</h5>
+          
+        </div><!-- login end-->
+      </div>  <!-- container1 end-->
+    </div><!-- login_page end-->
+    
+    <div class="signup_page"
+      <div id="container2">
+
+        <div class="signup">  
+          
+          <h3>註冊 Sign Up</h3>
+
+        <form action="/register" method="post">
+            <div class="tab"></div>
+            <label for="email" class="form-label2">電子郵件：</label><input type="text" id="email" name="email" placeholder="電子郵件" required>
+            <div class="tab"></div>
+            <label for="account2" class="form-label2">帳號：</label><input type="text" id="account2" name="account" placeholder="帳號" required>
+            <div class="tab"></div>
+            <label for="password2" class="form-label2">密碼：</label><input type="password" id="password2" name="password" placeholder="密碼" required>
+            <div class="tab"></div>
+            <label for="comfirm_password" class="form-label2">確認密碼：</label><input type="password" id="comfirm_password" name="comfirm_password" placeholder="確認密碼" required>
+            <div class="tab"></div>
+            <label for="fullname" class="form-label2">姓名：</label><input type="text" id="fullname" name="fullname" placeholder="姓名" required>
+            <div class="tab"></div>
+            <label for="weight" class="form-label2">體重：</label><input type="text" id="weight" name="weight" placeholder="體重  kg" required>
+            <div class="tab"></div>
+            <label for="height" class="form-label2">身高：</label><input type="text" id="height" name="height" placeholder="身高  cm" required>
+            <div class="tab"></div>
+            <label for="gender" class="form-label2">性別：</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>選擇性別</option>
+              <option value="男">男</option>
+              <option value="女">女</option>
+            </select>
+            <div class="tab"></div>   
+                    
+            <input type="submit" value="註冊" class="submit">
+          </form>  
+
+          <h5 onclick="show_hide()">登入帳號</h5>
+          
+        </div><!-- signup end-->
+      </div><!-- container2 end-->
+    </div><!-- signup_page end--> 
+
+    <script>
+      function show_hide() {
+        var login = document.getElementById("container1");
+        var signup = document.getElementById("container2");
+      
+        if (login.style.display === "none") {
+          login.style.display = "block"; //lonin出現
+          document.getElementById("account").value = "";
+          document.getElementById("password").value = "";
+          signup.style.display = "none"; //signup消失
+          copyright.style.margin = "200px 0px 0px 0px";
+        } else {
+          login.style.display = "none"; //login消失
+          signup.style.display = "block"; //signup出現
+          signup.style.visibility = "visible";
+          copyright.style.margin = "200px 0px 0px 0px";
+      
+          document.getElementById("fullname").value = "";
+          document.getElementById("account2").value = "";
+          document.getElementById("password2").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("gender").value = "";
+          document.getElementById("weight").value = "";
+          document.getElementById("height").value = "";
+        }
+      }
+    </script>   
+  </body>
+</html>
+

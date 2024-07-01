@@ -311,9 +311,10 @@ def main():
         host='127.0.0.1', port=3306, user='root', password='', database='vfc')
     cursor = connection.cursor()
     insert_query = "INSERT INTO exercise_scores (user_account, exercise_type, score, exercise_time,feedback) VALUES (%s, %s, %s, %s,%s)"
-    for score in scores:
+    if scores:  # 確保 scores 列表不為空
+        last_score = scores[-1]
         exercise_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        cursor.execute(insert_query, (user_account, exercise_type, score, exercise_time,feedback))
+        cursor.execute(insert_query, (user_account, exercise_type, last_score, exercise_time,feedback))
     connection.commit()
     cursor.close()
     connection.close()
